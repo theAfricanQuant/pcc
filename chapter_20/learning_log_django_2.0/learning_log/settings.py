@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -40,7 +41,7 @@ INSTALLED_APPS = [
 
     # Third party apps
     'bootstrap3',
-    
+
     # My apps
     'learning_logs',
     'users',
@@ -137,15 +138,15 @@ BOOTSTRAP3 = {
 
 # Heroku settings
 cwd = os.getcwd()
-if cwd == '/app' or cwd[:4] == '/tmp':
+if cwd == '/app' or cwd.startswith('/tmp'):
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(default='postgres://localhost')
     }
-    
+
     # Honor the 'X-Forwarded-Proto' header for request.is_secure().
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    
+
     # Only allow heroku to host the project.
     ALLOWED_HOSTS = ['*']
     DEBUG = False
